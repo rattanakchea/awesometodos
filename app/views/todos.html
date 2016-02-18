@@ -1,0 +1,40 @@
+<div class="row" ng-show="currentUser">
+    <p class="well">Hi, <img class="img-circle" height="50px" width="50px" ng-src="{{currentUser.gravatar}}" /> {{currentUser.firstName}}</p>
+    <!-- Todos input -->
+    <div class="col-md-6 col-xs-6 col-md-offset-3 col-xs-offset-3">
+    <form role="form" ng-submit="addTodo(todo)">
+        <div class="row">
+            <div class="input-group">
+                <input type="text" ng-model="todo" required placeholder="What needs to be done?" class="form-control">
+                <span class="input-group-btn">
+          <input type="submit" class="btn btn-primary" value="Add">
+        </span>
+            </div>
+        </div>
+    </form>
+    <br>
+    </div>
+
+    <div class="col-md-6 col-xs-6 well">
+        <h2>Doing</h2>
+        <!-- Todos list -->
+        <p class="input-group" ng-repeat="todo in allDoings">
+            <input type="text" ng-model="todo.title" class="form-control">
+            <span class="input-group-btn">
+            <button class="btn btn-danger" ng-click="removeTodo(todo.$id)" aria-label="Remove">X</button>
+            <button class="btn btn-success" ng-click="moveToDone(todo)" aria-label="Done">Done</button>
+            </span>
+        </p>
+    </div>
+    <div class="col-md-6 col-xs-6 well">
+        <h2>Done</h2>
+        <!-- DONES list -->
+        <p class="input-group" ng-repeat="done in allDones">
+            <span>{{done.title}}</span>
+            <span class="input-group-btn">
+            <button class="btn btn-danger" ng-click="removeDone(done.$id)" aria-label="Remove">X</button>
+            <button class="btn btn-success" ng-click="moveToDoing(done)" aria-label="Undo">Undo</button>
+            </span>
+        </p>
+    </div>
+</div>
